@@ -1,8 +1,7 @@
 const Tour = require('./../models/tourModel');
-const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+// const AppError = require('./../utils/appError');
 
 // const tours = JSON.parse(
 //  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
@@ -26,45 +25,28 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
-exports.getAllTours = catchAsync(async (req, res, next) => {
-  // creating a new object of the API features class
-  // in there we are parsing a query object (Tour.find)
-  // and the query string that's coming from express (req.query)
-  const features = new APIFeatures(Tour.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
-  const tours = await features.query;
+exports.getAllTours = factory.getAll(Tour);
+exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 
-  res.status(200).json({
-    status: 'success',
-    results: tours.length,
-    data: {
-      tours,
-    },
-  });
-});
+// catchAsync(async (req, res, next) => {
+//  const tour = await Tour.findById(req.params.id).populate('reviews');
+// Tour.findOne({_id: req.params.id})
 
-exports.getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.id).populate('reviews');
-  // Tour.findOne({_id: req.params.id})
+//  if (!tour) {
+//    return next(new AppError('No tour found with that ID', 404));
+//  }
 
-  if (!tour) {
-    return next(new AppError('No tour found with that ID', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour,
-    },
-  });
-  // it is a trick to convert string in the array to a number
-  // const id = req.params.id * 1;
-  // find the id in the array
-  // const tour = tours.find((el) => el.id === id);
-});
+//  res.status(200).json({
+//    status: 'success',
+//    data: {
+//      tour,
+//    },
+//  });
+// it is a trick to convert string in the array to a number
+// const id = req.params.id * 1;
+// find the id in the array
+// const tour = tours.find((el) => el.id === id);
+// });
 
 exports.createTour = factory.createOne(Tour);
 // exports.createTour = catchAsync(async (req, res, next) => {

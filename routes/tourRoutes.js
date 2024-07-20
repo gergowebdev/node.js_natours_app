@@ -10,7 +10,6 @@ const router = express.Router();
 
 // POST /tour/234fad4/reviews --> nested route
 // GET /tour/234fad4/reviews --> get us all the reviews for this tour
-// 234fad4 is just random
 
 // router
 //  .route('/:tourId/reviews')
