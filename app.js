@@ -98,6 +98,18 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/overview', (req, res) => {
+  res.status(200).render('overview', {
+    title: 'All Tours',
+  });
+});
+
+app.get('/tour', (req, res) => {
+  res.status(200).render('tour', {
+    title: 'The Forest Hiker Tour',
+  });
+});
+
 // Version 3.0 for refactoring the code for a better file structure
 app.use('/api/v1/tours', tourRouter); // middleware
 app.use('/api/v1/users', userRouter); // middleware
