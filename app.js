@@ -81,6 +81,7 @@ app.use((req, res, next) => {
 
 // Version 2.0 for refactoring
 // app.route('/api/v1/tours').get(getAllTours).post(createTour);
+
 // app
 // .route('/api/v1/tours/:id')
 // .get(getTour)
@@ -88,6 +89,7 @@ app.use((req, res, next) => {
 // .delete(deleteTour);
 
 // app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
 // app
 // .route('/api/v1/users/:id')
 // .get(getUser)
