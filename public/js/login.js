@@ -11,9 +11,10 @@ export const login = async (email, password) => {
         password,
       },
     });
+    console.log(result);
 
     // we are really sure that our API call was successful
-    if (res.data.status === 'success') {
+    if (result.data.status === 'success') {
       showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
         location.assign('/');

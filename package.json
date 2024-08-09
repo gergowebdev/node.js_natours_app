@@ -7,11 +7,16 @@
     "start": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
-    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "watch:js": "parcel watch ./public/js/index.js --target build --no-cache",
+    "build:js": "parcel watch ./public/js/index.js --target build --no-cache"
   },
   "author": "Gergő Gyenes",
   "license": "ISC",
+  "targets": {
+    "build": {
+      "distDir": "./public/js/dist"
+    }
+  },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "axios": "^1.7.2",
@@ -34,6 +39,8 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
-    "parcel": "^1.12.4"
+    "buffer": "^6.0.3",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
   }
 }
